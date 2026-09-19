@@ -1,15 +1,24 @@
-"""Fixed-zoning routing and traffic assignment prototype."""
+"""Prayas pathway module: evaluate transport networks after upstream ML zoning."""
 
 from .assignment import Assignment, assign
-from .models import City, Edge, Node, Weights, Zone
-from .routing import Route, shortest_path
+from .config import AccessibilityConfig, AssignmentConfig, DesignWeights, Weights
+from .graph import City
+from .inputs import CityInput, PathwayParameters
+from .models import Edge, Node, Zone
+from .routing import Route, Router, shortest_path
 
 __all__ = [
+    "AccessibilityConfig",
     "Assignment",
+    "AssignmentConfig",
     "City",
+    "CityInput",
+    "DesignWeights",
     "Edge",
     "Node",
+    "PathwayParameters",
     "Route",
+    "Router",
     "Weights",
     "Zone",
     "assign",
