@@ -246,6 +246,8 @@ backend/pipeline/datasets/
 # swallow urban_city_dataset/data, so re-include it explicitly.
 !urban_city_dataset/data/
 urban_city_dataset/logs/
+urban_city_dataset/data/raw/
+urban_city_dataset/data/processed/spatial/
 
 # Local sprite cache
 sprites/

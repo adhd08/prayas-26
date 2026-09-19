@@ -39,6 +39,7 @@ python3 -m venv ../.venv
 ../.venv/bin/python -m pytest tests -q
 ../.venv/bin/python scripts/graph_export.py    # Neo4j import CSVs -> data/processed/graph/
 ../.venv/bin/python scripts/city_grid_csv.py    # per-city 1km grid CSVs -> data/processed/city_grids/
+../.venv/bin/python scripts/india_city_grids.py # Mumbai and Bengaluru grids
 ```
 
 The `all` phase requires a passing saved pilot validation. Cached successful city processing is reused. `--recompute` recalculates a phase using cached raw files; it also retries missing raw extracts. `--no-osm` disables new OSM supplementation. Overture queries have a configurable `--timeout` (seconds). Errors become quality rows rather than fabricated zero counts. A failed three-city validation prevents scale-up.
