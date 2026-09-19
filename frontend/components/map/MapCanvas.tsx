@@ -13,6 +13,7 @@ import { useEffect, useState } from "react";
 import { MapContainer, TileLayer } from "react-leaflet";
 import { CITY_BOUNDS, NEIGHBOURHOODS } from "@/data/city";
 import { BASEMAP, DEMO_CITY } from "@/lib/config";
+import { z } from "@/lib/tokens";
 import { useSylvida } from "@/store/useSylvida";
 import {
   CameraController,
@@ -47,7 +48,10 @@ export default function MapCanvas() {
   }, [draggingType]);
 
   return (
-    <div className="sylvida-map relative h-full w-full">
+    <div
+      className="sylvida-map relative h-full w-full"
+      style={{ zIndex: z.mapOverlay }}
+    >
       <MapContainer
         center={[DEMO_CITY.lat, DEMO_CITY.lng]}
         zoom={DEMO_CITY.zoom}
@@ -56,7 +60,7 @@ export default function MapCanvas() {
         zoomControl={false}
         attributionControl
         preferCanvas
-        className="h-full w-full"
+        className="relative z-0 h-full w-full"
       >
         <TileLayer
           url={BASEMAP.url}

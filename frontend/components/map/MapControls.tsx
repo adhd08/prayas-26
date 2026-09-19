@@ -12,7 +12,7 @@ import {
 import { useMap } from "react-leaflet";
 import { CITY_BOUNDS } from "@/data/city";
 import { NEED_SPECS } from "@/data/facilityCatalog";
-import { needRampGradient } from "@/lib/tokens";
+import { needRampGradient, z } from "@/lib/tokens";
 import { useSylvida } from "@/store/useSylvida";
 import { IconButton } from "@/components/shared/Button";
 import { Popover } from "@/components/shared/Overlay";
@@ -30,7 +30,10 @@ export function MapControls() {
   const clearSelection = useSylvida((s) => s.clearSelection);
 
   return (
-    <div className="pointer-events-none absolute inset-0 z-[20]">
+    <div
+      className="pointer-events-none absolute inset-0"
+      style={{ zIndex: z.mapControl }}
+    >
       <div className="pointer-events-auto absolute left-3 top-3 flex flex-col gap-1.5">
         <IconButton label="Zoom in" onClick={() => map.zoomIn()}>
           <Plus size={15} />
@@ -133,7 +136,10 @@ export function MapLegend({ collapsed }: { collapsed?: boolean }) {
   if (collapsed) return null;
 
   return (
-    <div className="pointer-events-auto absolute bottom-3 left-3 z-[20] w-[214px] rounded-md border border-line bg-surface/92 p-3 backdrop-blur-sm">
+    <div
+      className="pointer-events-auto absolute bottom-3 left-3 w-[214px] rounded-md border border-line bg-surface/92 p-3 backdrop-blur-sm"
+      style={{ zIndex: z.mapControl }}
+    >
       <p className="text-[10px] font-semibold uppercase tracking-[0.13em] text-ink-3">
         {NEED_SPECS[need].label} need
       </p>

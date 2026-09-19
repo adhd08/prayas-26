@@ -4,6 +4,7 @@ import { PanelLeftClose, PanelLeftOpen, PanelRightClose, PanelRightOpen } from "
 import dynamic from "next/dynamic";
 import { useEffect, useState } from "react";
 import { APP_VERSION, MIN_DESKTOP_WIDTH } from "@/lib/config";
+import { z } from "@/lib/tokens";
 import { useSylvida } from "@/store/useSylvida";
 import { AssistantButton, AssistantDrawer } from "@/components/assistant/Assistant";
 import { IconButton } from "@/components/shared/Button";
@@ -57,6 +58,7 @@ export function SimulatorShell() {
         <aside
           className="relative flex shrink-0 flex-col border-r border-line bg-surface transition-[width] duration-[260ms]"
           style={{
+            zIndex: z.panel,
             width: leftCollapsed
               ? "var(--panel-left-collapsed)"
               : "var(--panel-left)",
@@ -108,6 +110,7 @@ export function SimulatorShell() {
         <aside
           className="relative flex shrink-0 flex-col border-l border-line bg-surface transition-[width] duration-[260ms]"
           style={{
+            zIndex: z.panel,
             width: rightCollapsed
               ? "var(--panel-left-collapsed)"
               : "var(--panel-right)",

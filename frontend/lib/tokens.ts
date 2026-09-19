@@ -96,6 +96,9 @@ export const z = {
   toast: 50,
   modal: 60,
   grain: 70,
+  // Leaflet panes start at 200. Keep map-local controls above every pane
+  // without allowing the map's canvas to escape the app-level stack.
+  mapControl: 1_000,
 } as const;
 
 /** Parses "#RRGGBB" into channel values. */
