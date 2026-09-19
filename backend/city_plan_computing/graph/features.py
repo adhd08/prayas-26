@@ -5,6 +5,8 @@ import numpy as np
 CONTINUOUS_FEATURES = [
     "population",
     "green_cover",
+    "building_density",
+    "building_density_observed",
     "elevation",
     "distance_to_boundary",
 ]
@@ -32,6 +34,8 @@ def extract_static_matrix(cells):
             [
                 float(cell["population"] or 0.0),
                 float(cell["green_cover"] or 0.0),
+                float(cell["building_density"] or 0.0),
+                float(cell["building_density"] is not None),
                 float(cell["elevation"] or 0.0),
                 float(cell["distance_to_boundary"] or 0.0),
             ]
