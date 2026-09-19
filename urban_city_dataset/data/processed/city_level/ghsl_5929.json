@@ -1,0 +1,372 @@
+{
+  "city_id": "ghsl_5929",
+  "features": {
+    "hospital_count": 1711,
+    "hospital_density": 0.3312681510164569,
+    "hospitals_per_100k": 5.160468108167297,
+    "clinic_count": 1611,
+    "clinic_density": 0.31190706679574054,
+    "clinics_per_100k": 4.858862724872891,
+    "school_count": 7159,
+    "school_density": 1.3860600193610841,
+    "schools_per_100k": 21.59192939004657,
+    "university_count": 731,
+    "university_density": 0.1415295256534366,
+    "universitys_per_100k": 2.2047353518821122,
+    "park_count": 34799,
+    "park_density": 6.737463697967086,
+    "parks_per_100k": 104.95565733262056,
+    "supermarket_count": 9264,
+    "supermarket_density": 1.7936108422071635,
+    "supermarkets_per_100k": 27.94072270839383,
+    "pharmacy_count": 7330,
+    "pharmacy_density": 1.4191674733785091,
+    "pharmacys_per_100k": 22.107674595480006,
+    "police_count": 2459,
+    "police_density": 0.47608906098741527,
+    "polices_per_100k": 7.4164763752094585,
+    "fire_station_count": 1214,
+    "fire_station_density": 0.23504356243949662,
+    "fire_stations_per_100k": 3.661489353194096,
+    "transit_station_count": 1897,
+    "transit_station_density": 0.36727976766698933,
+    "transit_stations_per_100k": 5.721454121094894,
+    "bus_stop_count": 31485,
+    "bus_stop_density": 6.095837366892546,
+    "bus_stops_per_100k": 94.96045493024393,
+    "transit_stop_count": 2588,
+    "transit_stop_density": 0.5010648596321394,
+    "transit_stops_per_100k": 7.805547319659244,
+    "restaurant_count": 150884,
+    "restaurant_density": 29.212778315585673,
+    "restaurants_per_100k": 455.0742665299325,
+    "cafe_count": 25106,
+    "cafe_density": 4.860793804453049,
+    "cafes_per_100k": 75.72104752989372,
+    "retail_count": 71763,
+    "retail_density": 13.894094869312681,
+    "retails_per_100k": 216.441071213565,
+    "accommodation_count": 5587,
+    "accommodation_density": 1.081703775411423,
+    "accommodations_per_100k": 16.850692764658497,
+    "community_count": 9124,
+    "community_density": 1.7665053242981608,
+    "communitys_per_100k": 27.518475171781663,
+    "other_count": 442456,
+    "other_density": 85.66427879961277,
+    "others_per_100k": 1334.4711147090998,
+    "uncategorized_count": 17901,
+    "uncategorized_density": 3.4658276863504356,
+    "uncategorizeds_per_100k": 53.990379663531726,
+    "transit_stops_per_km2": 6.964181994191675,
+    "poi_count": 825069,
+    "poi_diversity": 1.612200908243269,
+    "overture_hospital_count_observed_before_dedup": 7649,
+    "overture_school_count_observed_before_dedup": 8851,
+    "overture_clinic_count_observed_before_dedup": 3331,
+    "overture_park_count_observed_before_dedup": 10695,
+    "overture_transit_station_count_observed_before_dedup": 3741,
+    "osm_hospital_count_observed_before_dedup": 1742,
+    "osm_school_count_observed_before_dedup": 7225,
+    "osm_clinic_count_observed_before_dedup": 1625,
+    "osm_park_count_observed_before_dedup": 34927,
+    "osm_transit_station_count_observed_before_dedup": 2013,
+    "road_length_km": 137178.27004029352,
+    "road_density": 26.559200395022945,
+    "intersection_count_approx": 686554,
+    "intersection_density": 132.924298160697,
+    "road_network_mean_degree_approx": 1.9230086714617844,
+    "road_network_edge_node_ratio_approx": 0.9615043357308922,
+    "park_area_km2": 157.95667026781797,
+    "mapped_park_area_pct": 3.058212396279148,
+    "park_area_source": "OpenStreetMap park/garden/nature_reserve polygons",
+    "accessibility_weighting": "population",
+    "accessibility_sample_count": 5159,
+    "population_grid_sum": 33155906.871394463,
+    "population_grid_to_ucdb_ratio": 1.0000000000420577,
+    "hospital_nearest_mean_km": 0.9184664608214671,
+    "hospital_nearest_median_km": 0.7884042191029916,
+    "population_within_1km_hospital_pct": 64.04455737086353,
+    "population_within_3km_hospital_pct": 99.03982228040306,
+    "population_within_5km_hospital_pct": 99.97770123977755,
+    "school_nearest_mean_km": 0.42101729538344207,
+    "school_nearest_median_km": 0.35284922707679905,
+    "population_within_1km_school_pct": 96.18610280331242,
+    "population_within_3km_school_pct": 99.58174596111272,
+    "population_within_5km_school_pct": 99.99966250601996,
+    "park_nearest_mean_km": 0.25187934647406096,
+    "park_nearest_median_km": 0.1924540004246312,
+    "population_within_1km_park_pct": 98.2721173104155,
+    "population_within_3km_park_pct": 99.98950761521913,
+    "population_within_5km_park_pct": 100.0,
+    "transit_station_nearest_mean_km": 0.9024333174050152,
+    "transit_station_nearest_median_km": 0.7497565013649419,
+    "population_within_1km_transit_station_pct": 66.19251598767353,
+    "population_within_3km_transit_station_pct": 98.58465300575946,
+    "population_within_5km_transit_station_pct": 99.93956963046558,
+    "building_count": null,
+    "building_density": null,
+    "building_footprint_area_km2": null,
+    "built_area_pct": null
+  },
+  "quality": [
+    {
+      "city_id": "ghsl_5929",
+      "dataset": "overture_places",
+      "status": "success",
+      "records_found": 782921,
+      "missing_fields": "",
+      "warnings": "Observed map records; real-world completeness unknown. Raw bbox records=838382; clipping={'invalid_geometry': 0, 'outside_boundary': 55461}."
+    },
+    {
+      "city_id": "ghsl_5929",
+      "dataset": "overture_roads",
+      "status": "success",
+      "records_found": 1728143,
+      "missing_fields": "",
+      "warnings": "Observed map records; real-world completeness unknown. Raw bbox records=2144437; clipping={'invalid_geometry': 0, 'outside_boundary': 416294}."
+    },
+    {
+      "city_id": "ghsl_5929",
+      "dataset": "overture_buildings",
+      "status": "skipped",
+      "records_found": null,
+      "missing_fields": "",
+      "warnings": "Large GHSL urban centre (>3000 km²); remote Overture building query exceeds hackathon resource budget. GHSL built-up area remains available; no building count imputed."
+    },
+    {
+      "city_id": "ghsl_5929",
+      "dataset": "overture_land_use",
+      "status": "success",
+      "records_found": 200401,
+      "missing_fields": "",
+      "warnings": "Observed map records; real-world completeness unknown. Raw bbox records=269489; clipping={'invalid_geometry': 0, 'outside_boundary': 69088}."
+    },
+    {
+      "city_id": "ghsl_5929",
+      "dataset": "osm",
+      "status": "success",
+      "records_found": 108956,
+      "missing_fields": "",
+      "warnings": "Invalid/missing geometry=4; map completeness unknown. Preferred source for explicitly tagged facilities, transit and parks after pilot category sanity check; Overture fallback if no OSM category observed."
+    },
+    {
+      "city_id": "ghsl_5929",
+      "dataset": "derived_features",
+      "status": "success",
+      "records_found": 825069,
+      "missing_fields": "building_count;building_density;building_footprint_area_km2;built_area_pct",
+      "warnings": "{\"duplicate_pois_removed\": 16238, \"permanently_closed_removed\": 1}; distances are straight-line to mapped POI representative points; 1 km population cells, not travel times; facilities outside city boundary excluded."
+    },
+    {
+      "city_id": "ghsl_5929",
+      "dataset": "ghsl_population_grid",
+      "status": "success",
+      "records_found": 5159,
+      "missing_fields": "",
+      "warnings": "Grid ratio to UCDB population=1.0000000000420577; 2025 GHSL modelled population, 1 km cells."
+    },
+    {
+      "city_id": "ghsl_5929",
+      "dataset": "worldpop",
+      "status": "not_used",
+      "records_found": null,
+      "missing_fields": "",
+      "warnings": "Matching GHSL R2023A population grid used instead."
+    },
+    {
+      "city_id": "ghsl_5929",
+      "dataset": "eurostat",
+      "status": "not_joined",
+      "records_found": null,
+      "missing_fields": "",
+      "warnings": "Urban Audit administrative geographies differ from GHSL urban centres. No unverified boundary join."
+    },
+    {
+      "city_id": "ghsl_5929",
+      "dataset": "ghsl_ucdb",
+      "status": "success",
+      "records_found": 1,
+      "missing_fields": "ghsl_CL_LCZ_A13_2025;ghsl_GE_MRB_MAI_2025;ghsl_GE_MRB_LIS_2025;ghsl_HZ_CEV_DRO_2015;ghsl_HZ_CEV_COW_2015;ghsl_HZ_CEV_FLO_2015;ghsl_HZ_CEV_WLF_2015;ghsl_HZ_CEV_LAN_2015;ghsl_HZ_CEV_EAR_2015;ghsl_HZ_CEV_VOL_2015",
+      "warnings": "Mixed indicator years retained in field names; 2025 boundary and population; Natural Systems duplicate source IDs: agreeing fields retained, conflicts null. Country/subnational modelled indicators are not independent city surveys."
+    }
+  ],
+  "datasets": {
+    "places": {
+      "source_url": "https://stac.overturemaps.org/2026-08-19.0/catalog.json",
+      "download_date": "2026-09-19T09:01:08.115033+00:00",
+      "sha256": "2f9cf15c68af63e41a9bb3134bf8cdd9334d67cceee87ffc4da90a9648ab07e2",
+      "release": "2026-08-19.0",
+      "dataset": "places",
+      "asset_urls": [
+        "https://overturemaps-us-west-2.s3.us-west-2.amazonaws.com/release/2026-08-19.0/theme=places/type=place/part-00015-9dc40db3-3b1d-5e75-b9b5-1c218b3f1743-c000.zstd.parquet"
+      ],
+      "bbox": [
+        139.08583068846664,
+        35.172610643267284,
+        140.29177289761617,
+        36.21415505821356
+      ],
+      "boundary_sha256": "dcff23dfbd6394577fad270554be879ce37964dddc723a5dedbd82d1ed9620be",
+      "raw_records": 838382,
+      "query": "COPY (SELECT id,geometry,names.primary AS name,CAST(sources AS JSON) AS sources_json,\"confidence\",\"operating_status\",\"basic_category\",categories.primary AS category,CAST(categories AS JSON) AS categories_json FROM read_parquet(['https://overturemaps-us-west-2.s3.us-west-2.amazonaws.com/release/2026-08-19.0/theme=places/type=place/part-00015-9dc40db3-3b1d-5e75-b9b5-1c218b3f1743-c000.zstd.parquet'], union_by_name=true) WHERE bbox.xmin <= 140.29177289761617 AND bbox.xmax >= 139.08583068846664 AND bbox.ymin <= 36.21415505821356 AND bbox.ymax >= 35.172610643267284) TO '/Users/kavishsingh/prayas-hackathon/urban_city_dataset/data/raw/overture/2026-08-19.0/ghsl_5929/places.tmp.parquet' (FORMAT PARQUET, COMPRESSION ZSTD)",
+      "elapsed_seconds": 48.11,
+      "license": "Theme-specific; see https://docs.overturemaps.org/attribution/ and retained feature sources"
+    },
+    "roads": {
+      "source_url": "https://stac.overturemaps.org/2026-08-19.0/catalog.json",
+      "download_date": "2026-09-19T08:55:27.395014+00:00",
+      "sha256": "9dcbfc14382d9a67e9cef838ba23763e5638fe31c7ee5fd75d29b67ceacbb5b8",
+      "release": "2026-08-19.0",
+      "dataset": "roads",
+      "asset_urls": [
+        "https://overturemaps-us-west-2.s3.us-west-2.amazonaws.com/release/2026-08-19.0/theme=transportation/type=segment/part-00124-beb8a956-714b-5eba-9db7-59569455745b-c000.zstd.parquet",
+        "https://overturemaps-us-west-2.s3.us-west-2.amazonaws.com/release/2026-08-19.0/theme=transportation/type=segment/part-00125-d357bd9e-cdeb-5947-aa0b-c5f39101c0eb-c000.zstd.parquet",
+        "https://overturemaps-us-west-2.s3.us-west-2.amazonaws.com/release/2026-08-19.0/theme=transportation/type=segment/part-00126-b2ac73cd-fa90-50ef-bf66-446b4f2930ff-c000.zstd.parquet",
+        "https://overturemaps-us-west-2.s3.us-west-2.amazonaws.com/release/2026-08-19.0/theme=transportation/type=segment/part-00127-e1dcbfca-a33e-529b-8c61-dfb7f0174c05-c000.zstd.parquet"
+      ],
+      "bbox": [
+        139.08583068846664,
+        35.172610643267284,
+        140.29177289761617,
+        36.21415505821356
+      ],
+      "boundary_sha256": "dcff23dfbd6394577fad270554be879ce37964dddc723a5dedbd82d1ed9620be",
+      "raw_records": 2144437,
+      "query": "COPY (SELECT id,geometry,names.primary AS name,CAST(sources AS JSON) AS sources_json,\"class\",\"subtype\",CAST(connectors AS JSON) AS connectors_json FROM read_parquet(['https://overturemaps-us-west-2.s3.us-west-2.amazonaws.com/release/2026-08-19.0/theme=transportation/type=segment/part-00124-beb8a956-714b-5eba-9db7-59569455745b-c000.zstd.parquet','https://overturemaps-us-west-2.s3.us-west-2.amazonaws.com/release/2026-08-19.0/theme=transportation/type=segment/part-00125-d357bd9e-cdeb-5947-aa0b-c5f39101c0eb-c000.zstd.parquet','https://overturemaps-us-west-2.s3.us-west-2.amazonaws.com/release/2026-08-19.0/theme=transportation/type=segment/part-00126-b2ac73cd-fa90-50ef-bf66-446b4f2930ff-c000.zstd.parquet','https://overturemaps-us-west-2.s3.us-west-2.amazonaws.com/release/2026-08-19.0/theme=transportation/type=segment/part-00127-e1dcbfca-a33e-529b-8c61-dfb7f0174c05-c000.zstd.parquet'], union_by_name=true) WHERE bbox.xmin <= 140.29177289761617 AND bbox.xmax >= 139.08583068846664 AND bbox.ymin <= 36.21415505821356 AND bbox.ymax >= 35.172610643267284 AND subtype='road') TO '/Users/kavishsingh/prayas-hackathon/urban_city_dataset/data/raw/overture/2026-08-19.0/ghsl_5929/roads.tmp.parquet' (FORMAT PARQUET, COMPRESSION ZSTD)",
+      "elapsed_seconds": 132.15,
+      "license": "Theme-specific; see https://docs.overturemaps.org/attribution/ and retained feature sources"
+    },
+    "land_use": {
+      "source_url": "https://stac.overturemaps.org/2026-08-19.0/catalog.json",
+      "download_date": "2026-09-19T09:08:22.178030+00:00",
+      "sha256": "f42c1dafbdfddac49e01eeab0ea8f91989adeca6baacc7e0bce84cb047f1206b",
+      "release": "2026-08-19.0",
+      "dataset": "land_use",
+      "asset_urls": [
+        "https://overturemaps-us-west-2.s3.us-west-2.amazonaws.com/release/2026-08-19.0/theme=base/type=land_use/part-00005-1c3fb810-6e92-5b9c-9c68-6cf7c220b053-c000.zstd.parquet",
+        "https://overturemaps-us-west-2.s3.us-west-2.amazonaws.com/release/2026-08-19.0/theme=base/type=land_use/part-00008-5765fd70-71fe-5e72-9898-9eea51046b38-c000.zstd.parquet",
+        "https://overturemaps-us-west-2.s3.us-west-2.amazonaws.com/release/2026-08-19.0/theme=base/type=land_use/part-00027-27daef26-413d-5a01-ae9e-10d8bcee28b3-c000.zstd.parquet",
+        "https://overturemaps-us-west-2.s3.us-west-2.amazonaws.com/release/2026-08-19.0/theme=base/type=land_use/part-00031-21030f83-98eb-580a-aff9-07e03b4c5bad-c000.zstd.parquet"
+      ],
+      "bbox": [
+        139.08583068846664,
+        35.172610643267284,
+        140.29177289761617,
+        36.21415505821356
+      ],
+      "boundary_sha256": "dcff23dfbd6394577fad270554be879ce37964dddc723a5dedbd82d1ed9620be",
+      "raw_records": 269489,
+      "query": "COPY (SELECT id,geometry,names.primary AS name,CAST(sources AS JSON) AS sources_json,\"class\",\"subtype\" FROM read_parquet(['https://overturemaps-us-west-2.s3.us-west-2.amazonaws.com/release/2026-08-19.0/theme=base/type=land_use/part-00005-1c3fb810-6e92-5b9c-9c68-6cf7c220b053-c000.zstd.parquet','https://overturemaps-us-west-2.s3.us-west-2.amazonaws.com/release/2026-08-19.0/theme=base/type=land_use/part-00008-5765fd70-71fe-5e72-9898-9eea51046b38-c000.zstd.parquet','https://overturemaps-us-west-2.s3.us-west-2.amazonaws.com/release/2026-08-19.0/theme=base/type=land_use/part-00027-27daef26-413d-5a01-ae9e-10d8bcee28b3-c000.zstd.parquet','https://overturemaps-us-west-2.s3.us-west-2.amazonaws.com/release/2026-08-19.0/theme=base/type=land_use/part-00031-21030f83-98eb-580a-aff9-07e03b4c5bad-c000.zstd.parquet'], union_by_name=true) WHERE bbox.xmin <= 140.29177289761617 AND bbox.xmax >= 139.08583068846664 AND bbox.ymin <= 36.21415505821356 AND bbox.ymax >= 35.172610643267284) TO '/Users/kavishsingh/prayas-hackathon/urban_city_dataset/data/raw/overture/2026-08-19.0/ghsl_5929/land_use.tmp.parquet' (FORMAT PARQUET, COMPRESSION ZSTD)",
+      "elapsed_seconds": 15.21,
+      "license": "Theme-specific; see https://docs.overturemaps.org/attribution/ and retained feature sources"
+    },
+    "osm": {
+      "source_url": "https://overpass-api.de/api/interpreter",
+      "download_date": "2026-09-19T09:10:02.786363+00:00",
+      "sha256": "8c1ceb19dae699efa6466bf0afc3d7cc2daa056a2212a0407d2a1d395c9d0e8a",
+      "query": "[out:json][timeout:120];(nwr[amenity~\"^(hospital|clinic|school|university|pharmacy|police|fire_station)$\"](35.172610643267284,139.08583068846664,36.21415505821356,140.29177289761617);nwr[leisure~\"^(park|garden|nature_reserve)$\"](35.172610643267284,139.08583068846664,36.21415505821356,140.29177289761617);nwr[railway~\"^(station|halt|tram_stop)$\"](35.172610643267284,139.08583068846664,36.21415505821356,140.29177289761617);node[highway=bus_stop](35.172610643267284,139.08583068846664,36.21415505821356,140.29177289761617);nwr[public_transport~\"^(station|platform)$\"](35.172610643267284,139.08583068846664,36.21415505821356,140.29177289761617););out center geom;",
+      "osm_timestamp": "2026-09-19T09:06:51Z",
+      "license": "ODbL 1.0; © OpenStreetMap contributors",
+      "raw_records": 127046
+    }
+  },
+  "poi_source_counts": [
+    {
+      "poi_category": "accommodation",
+      "source": "Overture Maps",
+      "count": 5587
+    },
+    {
+      "poi_category": "bus_stop",
+      "source": "OpenStreetMap",
+      "count": 31485
+    },
+    {
+      "poi_category": "cafe",
+      "source": "Overture Maps",
+      "count": 25106
+    },
+    {
+      "poi_category": "clinic",
+      "source": "OpenStreetMap",
+      "count": 1611
+    },
+    {
+      "poi_category": "community",
+      "source": "Overture Maps",
+      "count": 9124
+    },
+    {
+      "poi_category": "fire_station",
+      "source": "OpenStreetMap",
+      "count": 1214
+    },
+    {
+      "poi_category": "hospital",
+      "source": "OpenStreetMap",
+      "count": 1711
+    },
+    {
+      "poi_category": "other",
+      "source": "Overture Maps",
+      "count": 442456
+    },
+    {
+      "poi_category": "park",
+      "source": "OpenStreetMap",
+      "count": 34799
+    },
+    {
+      "poi_category": "pharmacy",
+      "source": "OpenStreetMap",
+      "count": 7330
+    },
+    {
+      "poi_category": "police",
+      "source": "OpenStreetMap",
+      "count": 2459
+    },
+    {
+      "poi_category": "restaurant",
+      "source": "Overture Maps",
+      "count": 150884
+    },
+    {
+      "poi_category": "retail",
+      "source": "Overture Maps",
+      "count": 71763
+    },
+    {
+      "poi_category": "school",
+      "source": "OpenStreetMap",
+      "count": 7159
+    },
+    {
+      "poi_category": "supermarket",
+      "source": "Overture Maps",
+      "count": 9264
+    },
+    {
+      "poi_category": "transit_station",
+      "source": "OpenStreetMap",
+      "count": 1897
+    },
+    {
+      "poi_category": "transit_stop",
+      "source": "OpenStreetMap",
+      "count": 2588
+    },
+    {
+      "poi_category": "uncategorized",
+      "source": "Overture Maps",
+      "count": 17901
+    },
+    {
+      "poi_category": "university",
+      "source": "OpenStreetMap",
+      "count": 731
+    }
+  ],
+  "processed_at": "2026-09-19T09:11:08.247385+00:00"
+}

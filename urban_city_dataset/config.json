@@ -1,0 +1,60 @@
+{
+  "ghsl_version": "R2024A V1.2",
+  "ghsl_url": "https://jeodpp.jrc.ec.europa.eu/ftp/jrc-opendata/GHSL/GHS_UCDB_GLOBE_R2024A/GHS_UCDB_GLOBE_R2024A/V1-2/GHS_UCDB_GLOBE_R2024A_V1_2.zip",
+  "population_year": 2025,
+  "overture_release": "2026-08-19.0",
+  "cities": [
+    {
+      "city_id": "ghsl_5929",
+      "city_name": "Tokyo",
+      "country": "Japan"
+    },
+    {
+      "city_id": "ghsl_178",
+      "city_name": "Singapore",
+      "country": "Singapore"
+    },
+    {
+      "city_id": "ghsl_698",
+      "city_name": "Copenhagen",
+      "country": "Denmark"
+    },
+    {
+      "city_id": "ghsl_1590",
+      "city_name": "Amsterdam",
+      "country": "Netherlands"
+    },
+    {
+      "city_id": "ghsl_5071",
+      "city_name": "Barcelona",
+      "country": "Spain"
+    },
+    {
+      "city_id": "ghsl_1689",
+      "city_name": "Zurich",
+      "country": "Switzerland"
+    },
+    {
+      "city_id": "ghsl_1693",
+      "city_name": "Stockholm",
+      "country": "Sweden"
+    },
+    {
+      "city_id": "ghsl_5816",
+      "city_name": "London",
+      "country": "United Kingdom"
+    },
+    {
+      "city_id": "ghsl_2878",
+      "city_name": "Paris",
+      "country": "France"
+    },
+    {
+      "city_id": "ghsl_8099",
+      "city_name": "New York City",
+      "country": "United States"
+    }
+  ],
+  "sampling_spacing_m": 500,
+  "max_accessibility_points": 12000
+}

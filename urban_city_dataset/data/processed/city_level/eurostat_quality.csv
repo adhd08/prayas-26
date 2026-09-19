@@ -1,0 +1,46 @@
+city_id,dataset,status,records_found,missing_fields,warnings
+ghsl_698,eurostat_urb_cpop1,no_observations,0.0,,Administrative city/greater city; not joined to GHSL features.
+ghsl_698,eurostat_urb_ctran,no_observations,0.0,,Administrative city/greater city; not joined to GHSL features.
+ghsl_698,eurostat_urb_cenv,no_observations,0.0,,No observations returned for this city code.
+ghsl_698,eurostat_urb_ceduc,no_observations,0.0,,Administrative city/greater city; not joined to GHSL features.
+ghsl_698,eurostat_urb_clivcon,no_observations,0.0,,Administrative city/greater city; not joined to GHSL features.
+ghsl_1590,eurostat_urb_cpop1,failed,,,Code/name mismatch: Amsterdam -> Alkmaar (greater city)
+ghsl_1590,eurostat_urb_ctran,failed,,,Code/name mismatch: Amsterdam -> Alkmaar (greater city)
+ghsl_1590,eurostat_urb_cenv,failed,,,Code/name mismatch: Amsterdam -> Alkmaar (greater city)
+ghsl_1590,eurostat_urb_ceduc,failed,,,Code/name mismatch: Amsterdam -> Alkmaar (greater city)
+ghsl_1590,eurostat_urb_clivcon,failed,,,Code/name mismatch: Amsterdam -> Alkmaar (greater city)
+ghsl_5071,eurostat_urb_cpop1,context_only,10.0,,Administrative city/greater city; not joined to GHSL features.
+ghsl_5071,eurostat_urb_ctran,context_only,36.0,,Administrative city/greater city; not joined to GHSL features.
+ghsl_5071,eurostat_urb_cenv,no_observations,0.0,,No observations returned for this city code.
+ghsl_5071,eurostat_urb_ceduc,context_only,66.0,,Administrative city/greater city; not joined to GHSL features.
+ghsl_5071,eurostat_urb_clivcon,context_only,145.0,,Administrative city/greater city; not joined to GHSL features.
+ghsl_1689,eurostat_urb_cpop1,context_only,11.0,,Administrative city/greater city; not joined to GHSL features.
+ghsl_1689,eurostat_urb_ctran,context_only,160.0,,Administrative city/greater city; not joined to GHSL features.
+ghsl_1689,eurostat_urb_cenv,no_observations,0.0,,No observations returned for this city code.
+ghsl_1689,eurostat_urb_ceduc,context_only,89.0,,Administrative city/greater city; not joined to GHSL features.
+ghsl_1689,eurostat_urb_clivcon,context_only,234.0,,Administrative city/greater city; not joined to GHSL features.
+ghsl_1081,eurostat_urb_cpop1,no_observations,0.0,,Administrative city/greater city; not joined to GHSL features.
+ghsl_1081,eurostat_urb_ctran,no_observations,0.0,,Administrative city/greater city; not joined to GHSL features.
+ghsl_1081,eurostat_urb_cenv,no_observations,0.0,,Administrative city/greater city; not joined to GHSL features.
+ghsl_1081,eurostat_urb_ceduc,no_observations,0.0,,Administrative city/greater city; not joined to GHSL features.
+ghsl_1081,eurostat_urb_clivcon,no_observations,0.0,,Administrative city/greater city; not joined to GHSL features.
+ghsl_5816,eurostat_urb_cpop1,context_only,4.0,,Administrative city/greater city; not joined to GHSL features.
+ghsl_5816,eurostat_urb_ctran,context_only,16.0,,Administrative city/greater city; not joined to GHSL features.
+ghsl_5816,eurostat_urb_cenv,context_only,4.0,,Administrative city/greater city; not joined to GHSL features.
+ghsl_5816,eurostat_urb_ceduc,context_only,17.0,,Administrative city/greater city; not joined to GHSL features.
+ghsl_5816,eurostat_urb_clivcon,context_only,46.0,,Administrative city/greater city; not joined to GHSL features.
+ghsl_2878,eurostat_urb_cpop1,context_only,9.0,,Administrative city/greater city; not joined to GHSL features.
+ghsl_2878,eurostat_urb_ctran,context_only,88.0,,Administrative city/greater city; not joined to GHSL features.
+ghsl_2878,eurostat_urb_cenv,context_only,7.0,,Administrative city/greater city; not joined to GHSL features.
+ghsl_2878,eurostat_urb_ceduc,context_only,93.0,,Administrative city/greater city; not joined to GHSL features.
+ghsl_2878,eurostat_urb_clivcon,context_only,267.0,,Administrative city/greater city; not joined to GHSL features.
+ghsl_5483,eurostat_urb_cpop1,context_only,11.0,,Administrative city/greater city; not joined to GHSL features.
+ghsl_5483,eurostat_urb_ctran,context_only,67.0,,Administrative city/greater city; not joined to GHSL features.
+ghsl_5483,eurostat_urb_cenv,context_only,15.0,,Administrative city/greater city; not joined to GHSL features.
+ghsl_5483,eurostat_urb_ceduc,context_only,113.0,,Administrative city/greater city; not joined to GHSL features.
+ghsl_5483,eurostat_urb_clivcon,context_only,106.0,,Administrative city/greater city; not joined to GHSL features.
+ghsl_3338,eurostat_urb_cpop1,context_only,10.0,,Administrative city/greater city; not joined to GHSL features.
+ghsl_3338,eurostat_urb_ctran,context_only,40.0,,Administrative city/greater city; not joined to GHSL features.
+ghsl_3338,eurostat_urb_cenv,no_observations,0.0,,Administrative city/greater city; not joined to GHSL features.
+ghsl_3338,eurostat_urb_ceduc,context_only,70.0,,Administrative city/greater city; not joined to GHSL features.
+ghsl_3338,eurostat_urb_clivcon,context_only,154.0,,Administrative city/greater city; not joined to GHSL features.
