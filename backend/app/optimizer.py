@@ -1,9 +1,19 @@
-"""Future worker entry point; no planning algorithm is implemented yet.
+"""Synchronous computation entry point for a future durable worker."""
 
-Available libraries: geopandas, shapely, networkx, osmnx, sklearn, ortools.
-Run CPU-heavy work in a separate worker process, never inside a Next.js route.
-"""
+from dataclasses import asdict
+
+from app.pathways.assignment import assign
+from app.pathways.models import City, Weights
 
 
 def optimize(parameters: dict) -> dict:
-    raise NotImplementedError("Define planning inputs and implement the optimizer first")
+    """Evaluate fixed upstream zoning with no database or API side effects."""
+    city = City.from_dict(parameters["city"])
+    return asdict(
+        assign(
+            city,
+            parameters["od"],
+            weights=Weights(**parameters.get("weights", {})),
+            **parameters.get("assignment", {}),
+        )
+    )
