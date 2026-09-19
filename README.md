@@ -1,6 +1,6 @@
 # Prayas
 
-Infrastructure scaffold for a geospatial planning app. No planning algorithm, dashboard,
+Geospatial planning scaffold with a standalone Python pathway optimization prototype. No dashboard,
 login screen, or working job execution is implemented yet.
 
 **Start with [the setup guide](docs/SETUP.md)** for GitHub, Supabase, local development,
@@ -75,7 +75,7 @@ the generated contract for drift.
   → separate Python worker runs optimisation → browser polls `GET /v1/jobs/{id}`.
 - `public.jobs` is reserved for that future pipeline. It permits users to read
   only their own rows; only trusted server code can write. No jobs are queued yet.
-- The optimizer entry point deliberately raises `NotImplementedError`. GeoPandas,
+- The optimizer entry point runs fixed-zoning pathway assignment; see [usage and design](docs/PATHWAYS.md). GeoPandas,
   Shapely, NetworkX, OSMnx, scikit-learn, and OR-Tools are installed and locked.
 - Redis/QStash are not needed for this scaffold. When implementing execution,
   use a durable Postgres queue with atomic claiming, retry and restart handling;
@@ -85,3 +85,14 @@ the generated contract for drift.
 
 Live Supabase connectivity, SQL policies, and cloud deployment require your account
 setup. Local health checks do not certify that those services are connected.
+
+## Pathway optimization
+
+Run the synthetic demo from `backend/`:
+
+```bash
+python -m app.pathways examples/pathways/city.json
+```
+
+See [the pathway guide](docs/PATHWAYS.md) for inputs, costs, hard constraints,
+A*/Dijkstra, congestion assignment, KPIs, tests, and the future ACO/GA extension.

@@ -1,0 +1,30 @@
+{
+  "city": {
+    "nodes": [
+      {"id": "homes", "x": 0, "y": 0},
+      {"id": "junction", "x": 1, "y": 0},
+      {"id": "bypass", "x": 1, "y": 1},
+      {"id": "jobs", "x": 2, "y": 0},
+      {"id": "clinic", "x": 3, "y": 0},
+      {"id": "isolated", "x": 4, "y": 2}
+    ],
+    "zones": [
+      {"id": "R", "node": "homes", "land_use": "residential"},
+      {"id": "C", "node": "jobs", "land_use": "commercial"},
+      {"id": "H", "node": "clinic", "land_use": "civic"},
+      {"id": "I", "node": "isolated", "land_use": "industrial"}
+    ],
+    "edges": [
+      {"id": "main1", "source": "homes", "target": "junction", "free_flow_time": 2, "capacity": 400, "length": 1},
+      {"id": "main2", "source": "junction", "target": "jobs", "free_flow_time": 2, "capacity": 400, "length": 1},
+      {"id": "bypass1", "source": "homes", "target": "bypass", "free_flow_time": 3, "capacity": 1000, "length": 1.5, "construction_cost": 50, "environmental_penalty": 0.2, "existing": false},
+      {"id": "bypass2", "source": "bypass", "target": "jobs", "free_flow_time": 3, "capacity": 1000, "length": 1.5, "construction_cost": 50, "environmental_penalty": 0.2, "existing": false},
+      {"id": "clinic_link", "source": "jobs", "target": "clinic", "free_flow_time": 1, "capacity": 500, "length": 0.5},
+      {"id": "park_shortcut", "source": "homes", "target": "jobs", "free_flow_time": 0.1, "capacity": 5000, "protected": true},
+      {"id": "forbidden_link", "source": "homes", "target": "isolated", "free_flow_time": 1, "capacity": 500, "forbidden": true}
+    ]
+  },
+  "od": {"R": {"C": 900, "H": 100, "I": 25}},
+  "weights": {"travel_time": 1, "construction_cost": 0.1, "environmental_penalty": 0.2, "construction_scale": 100},
+  "assignment": {"max_iterations": 500, "tolerance": 0.001}
+}
