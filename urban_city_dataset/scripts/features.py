@@ -42,8 +42,14 @@ def empty_geo():return gpd.GeoDataFrame(columns=['id','geometry'],geometry='geom
 def clip(g,boundary):
     if g.empty:return g.copy(),{'invalid_geometry':0,'outside_boundary':0}
     g=g.drop_duplicates('id').copy();valid=g.geometry.notna()&~g.geometry.is_empty
-    bad=int((~valid).sum());g=g[valid].copy();g.geometry=g.geometry.make_valid()
-    before=len(g);g=g[g.intersects(boundary)].copy();g.geometry=g.geometry.intersection(boundary)
+    bad=int((~valid).sum());g=g[valid].copy();before=len(g)
+    # Avoid repairing every footprint in a broad Overture bbox.  The spatial
+    # index first retains only features that can touch the city, then repairs
+    # and clips that much smaller candidate set exactly.
+    candidate_positions=g.sindex.query(boundary,predicate='intersects')
+    g=g.iloc[np.unique(candidate_positions)].copy()
+    g.geometry=g.geometry.make_valid()
+    g=g[g.intersects(boundary)].copy();g.geometry=g.geometry.intersection(boundary)
     g=g[~g.geometry.is_empty].copy()
     return g,{'invalid_geometry':bad,'outside_boundary':before-len(g)}
 

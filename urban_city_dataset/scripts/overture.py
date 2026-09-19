@@ -14,10 +14,14 @@ def asset_urls(release,dataset,bbox):
     collection=cached_json(base+'/collection.json',cache/'collection.json')
     items=[x for x in collection['links'] if x['rel']=='item']
     boxes=collection.get('extent',{}).get('spatial',{}).get('bbox',[])
-    # STAC collection boxes mirror file items in this release. Only exploit when lengths match;
-    # verify selected item boxes, and otherwise fetch every item before pruning.
-    # Fetch every small item manifest once; STAC extent order has no guaranteed
-    # relationship to link order. Prune using each item's own bbox instead.
+    # Current Overture collections publish one spatial extent per item, in link
+    # order.  Use that index when it is structurally complete: requesting every
+    # global partition manifest before a city query made small city extracts take
+    # minutes and did not improve the result.  If a future release changes that
+    # structure, retain the conservative all-item path below.
+    if len(boxes)==len(items):
+        items=[item for item,item_bbox in zip(items,boxes) if overlap(item_bbox,bbox)]
+        if not items:raise ValueError('No collection partition overlaps boundary bbox')
     def get(item):
         url=item['href'];obj=cached_json(url,cache/(url.split('/')[-1]))
         return obj

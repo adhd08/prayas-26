@@ -1,6 +1,0 @@
-city_id,status,missing_fields,notes
-in_chd,metadata_only,region;income_group;latitude;longitude;built_up_area_km2;boundary;grid_cells;building_footprints,"Do not run the Neo4j import for this city until boundary, population-grid, and building-footprint inputs have been processed."
-in_mum,metadata_only,region;income_group;latitude;longitude;built_up_area_km2;boundary;grid_cells;building_footprints,"Do not run the Neo4j import for this city until boundary, population-grid, and building-footprint inputs have been processed."
-in_blr,metadata_only,region;income_group;latitude;longitude;built_up_area_km2;boundary;grid_cells;building_footprints,"Do not run the Neo4j import for this city until boundary, population-grid, and building-footprint inputs have been processed."
-in_del,metadata_only,region;income_group;latitude;longitude;built_up_area_km2;boundary;grid_cells;building_footprints,"Do not run the Neo4j import for this city until boundary, population-grid, and building-footprint inputs have been processed."
-in_ncr,metadata_only,region;income_group;latitude;longitude;built_up_area_km2;boundary;grid_cells;building_footprints,"Do not run the Neo4j import for this city until boundary, population-grid, and building-footprint inputs have been processed."

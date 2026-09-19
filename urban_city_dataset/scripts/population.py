@@ -7,6 +7,7 @@ POP_URL=f'https://jeodpp.jrc.ec.europa.eu/ftp/jrc-opendata/GHSL/GHS_POP_GLOBE_R2
 POP_FILE=RAW/'ghsl'/(POP_NAME+'.tif')
 def download_population():
     if POP_FILE.exists():return POP_FILE
+    POP_FILE.parent.mkdir(parents=True, exist_ok=True)
     with RemoteZip(POP_URL,timeout=300) as z:
         name=next(x.filename for x in z.infolist() if x.filename.endswith('.tif'))
         logging.info('Download population grid %s',name)
