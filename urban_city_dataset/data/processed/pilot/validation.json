@@ -1,0 +1,43 @@
+{
+  "phase": "pilot",
+  "checked_at": "2026-09-19T09:13:49.120703+00:00",
+  "passed": true,
+  "errors": [],
+  "city_count": 3,
+  "poi_count": 1004827,
+  "pilot_summary": [
+    {
+      "city_name": "Singapore",
+      "population": 5117758.84,
+      "area_km2": 438.0,
+      "hospital_count": 63,
+      "school_count": 483,
+      "park_count": 1172,
+      "road_length_km": 13047.902071850456,
+      "building_count": 183591.0,
+      "population_grid_to_ucdb_ratio": 0.9999999996750688
+    },
+    {
+      "city_name": "Tokyo",
+      "population": 33155906.87,
+      "area_km2": 5165.0,
+      "hospital_count": 1711,
+      "school_count": 7159,
+      "park_count": 34799,
+      "road_length_km": 137178.27004029352,
+      "building_count": null,
+      "population_grid_to_ucdb_ratio": 1.0000000000420577
+    },
+    {
+      "city_name": "Copenhagen",
+      "population": 1258201.64,
+      "area_km2": 302.0,
+      "hospital_count": 32,
+      "school_count": 313,
+      "park_count": 2929,
+      "road_length_km": 8296.56549149618,
+      "building_count": 258432.0,
+      "population_grid_to_ucdb_ratio": 1.0000000005855032
+    }
+  ]
+}

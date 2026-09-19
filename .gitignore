@@ -241,8 +241,14 @@ backend/datasets/
 backend/pipeline-data/
 backend/pipeline/datasets/
 
-# Local Claude-owned urban dataset pipeline; keep it out of app commits.
-urban_city_dataset/
+# Local urban dataset pipeline: track the scripts and the extracted 1km grid
+# data, but never the run logs. The global `data/` rule above would otherwise
+# swallow urban_city_dataset/data, so re-include it explicitly.
+!urban_city_dataset/data/
+urban_city_dataset/logs/
+
+# Local sprite cache
+sprites/
 *.DS_Store
 
 # The upstream Python template ignores every directory named lib; keep the
