@@ -102,3 +102,13 @@ population-weighted access to essential services.
 
 See [the pathway guide](docs/PATHWAYS.md) for the zoning-to-worker contract,
 configuration, constraints, tests, and the future ACO/GA network-design boundary.
+
+## City zoning generator
+
+`backend/city_plan_computing` trains the upstream zoning model from the committed
+urban grid dataset. It reads `:GridCell` and `:CONNECTED_TO` records from Neo4j's
+`urban` database, then produces fixed land-use zones for the pathway module.
+It has its own ML dependencies in `requirements.txt`; it remains separate from
+the API runtime. See `urban_city_dataset/data/processed/graph/import.sh` to import
+the data. Set `NEO4J_PASSWORD` and, optionally, `URBAN_CITY_ID` before running
+`python gen_main.py` from the city_plan_computing directory.

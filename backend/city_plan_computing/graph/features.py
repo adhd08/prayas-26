@@ -1,6 +1,6 @@
 import json
-import numpy as np
 
+import numpy as np
 
 CONTINUOUS_FEATURES = [
     "population",
@@ -11,10 +11,7 @@ CONTINUOUS_FEATURES = [
 
 
 def build_zone_mapping(zone_types):
-    return {
-        zone: i
-        for i, zone in enumerate(zone_types)
-    }
+    return {zone: i for i, zone in enumerate(zone_types)}
 
 
 def encode_zone(zone, zone_to_id):
@@ -119,7 +116,6 @@ def build_dynamic_features(
     )
 
     for i in range(num_nodes):
-
         zone = assigned_zones[i]
 
         # Assigned flag.
@@ -141,7 +137,6 @@ def build_dynamic_features(
         unassigned_count = 0
 
         for neighbor in neighbors:
-
             neighbor_zone = assigned_zones[neighbor]
 
             if neighbor_zone == -1:

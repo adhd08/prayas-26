@@ -1,46 +1,38 @@
 import torch
-
 from config import (
+    CITY_ID,
+    DROPOUT,
+    HIDDEN_DIM,
+    NEO4J_DATABASE,
+    NEO4J_PASSWORD,
     NEO4J_URI,
     NEO4J_USERNAME,
-    NEO4J_PASSWORD,
-    NEO4J_DATABASE,
-    ZONE_TYPES,
     ZONE_TO_ID,
-    HIDDEN_DIM,
-    DROPOUT,
+    ZONE_TYPES,
 )
-
-from neo4j.loader import Neo4jLoader
-
+from generation.generator import (
+    CityGeneratorEngine,
+)
 from graph.features import (
     extract_static_matrix,
     fit_normalization,
     normalize_matrix,
 )
-
 from graph.pyg_graph import (
     build_pyg_graph,
 )
-
-from training.build_sequences import (
-    build_city_sequence,
-)
-
-from training.dataset import (
-    create_training_states,
-)
-
 from models.generator import (
     CityGenerator,
 )
-
+from neo4j.loader import Neo4jLoader
+from training.build_sequences import (
+    build_city_sequence,
+)
+from training.dataset import (
+    create_training_states,
+)
 from training.train import (
     train_model,
-)
-
-from generation.generator import (
-    CityGeneratorEngine,
 )
 
 
@@ -54,24 +46,17 @@ def main():
         NEO4J_PASSWORD,
         NEO4J_DATABASE,
     ) as loader:
+        cells = loader.load_cells(CITY_ID)
 
-        cells = loader.load_cells()
-
-    print(
-        f"Loaded {len(cells)} cells"
-    )
+    print(f"Loaded {len(cells)} cells for {CITY_ID}")
 
     # -------------------------
     # Normalization
     # -------------------------
 
-    static_raw = extract_static_matrix(
-        cells
-    )
+    static_raw = extract_static_matrix(cells)
 
-    normalization = fit_normalization(
-        static_raw
-    )
+    normalization = fit_normalization(static_raw)
 
     static_normalized = normalize_matrix(
         static_raw,
@@ -93,27 +78,17 @@ def main():
         ZONE_TO_ID,
     )
 
-    print(
-        f"Nodes: {graph.num_nodes}"
-    )
+    print(f"Nodes: {graph.num_nodes}")
 
-    print(
-        f"Edges: {graph.edge_index.shape[1]}"
-    )
+    print(f"Edges: {graph.edge_index.shape[1]}")
 
-    print(
-        f"Static features: "
-        f"{graph.x.shape[1]}"
-    )
+    print(f"Static features: {graph.x.shape[1]}")
 
     # -------------------------
     # Training sequence
     # -------------------------
 
-    zone_assignments = [
-        ZONE_TO_ID[cell["type"]]
-        for cell in cells
-    ]
+    zone_assignments = [ZONE_TO_ID[cell["type"]] for cell in cells]
 
     sequence = build_city_sequence(
         zone_assignments,
@@ -121,22 +96,14 @@ def main():
         len(ZONE_TYPES),
     )
 
-    print(
-        f"Training actions: "
-        f"{len(sequence)}"
+    print(f"Training actions: {len(sequence)}")
+
+    training_states = create_training_states(
+        sequence,
+        graph.num_nodes,
     )
 
-    training_states = (
-        create_training_states(
-            sequence,
-            graph.num_nodes,
-        )
-    )
-
-    print(
-        f"Training states: "
-        f"{len(training_states)}"
-    )
+    print(f"Training states: {len(training_states)}")
 
     # -------------------------
     # Model
@@ -152,12 +119,7 @@ def main():
     # neighbor same-zone    = 1
     # neighbor unassigned   = 1
 
-    input_dim = (
-        4
-        + 1
-        + len(ZONE_TYPES)
-        + 3
-    )
+    input_dim = 4 + 1 + len(ZONE_TYPES) + 3
 
     model = CityGenerator(
         input_dim=input_dim,
@@ -184,11 +146,7 @@ def main():
     # Generate
     # -------------------------
 
-    device = torch.device(
-        "cuda"
-        if torch.cuda.is_available()
-        else "cpu"
-    )
+    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
     engine = CityGeneratorEngine(
         model=model,
@@ -198,18 +156,11 @@ def main():
         device=device,
     )
 
-    generated_zones, log = (
-        engine.generate()
-    )
+    generated_zones, log = engine.generate()
 
-    print(
-        "Generation complete."
-    )
+    print("Generation complete.")
 
-    print(
-        f"Assigned cells: "
-        f"{(generated_zones >= 0).sum().item()}"
-    )
+    print(f"Assigned cells: {(generated_zones >= 0).sum().item()}")
 
 
 if __name__ == "__main__":
