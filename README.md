@@ -112,3 +112,11 @@ It has its own ML dependencies in `requirements.txt`; it remains separate from
 the API runtime. See `urban_city_dataset/data/processed/graph/import.sh` to import
 the data. Set `NEO4J_PASSWORD` and, optionally, `URBAN_CITY_ID` before running
 `python gen_main.py` from the city_plan_computing directory.
+
+## 2D-to-3D planning assets
+
+The optional `backend/app/three_d` worker turns a trusted design-reference image
+into an OBJ or GLB asset through TripoSR. It stays separate from the normal API
+runtime, because its model and GPU dependencies are substantial. See
+[the 2D-to-3D guide](docs/THREE_D.md) for setup, the worker command, the
+planning-data boundary, and the path to the future job pipeline.
