@@ -1,19 +1,15 @@
 import torch
 import torch.nn.functional as F
-from tqdm import tqdm
-
-from graph.state import CityState
-
 from config import (
     DEVICE,
-    LEARNING_RATE,
-    WEIGHT_DECAY,
     EPOCHS,
-    ROOT_LOSS_WEIGHT,
     EXPAND_LOSS_WEIGHT,
+    LEARNING_RATE,
+    ROOT_LOSS_WEIGHT,
+    WEIGHT_DECAY,
     ZONE_LOSS_WEIGHT,
-    STOP_LOSS_WEIGHT,
 )
+from tqdm import tqdm
 
 
 def build_dynamic_features_tensor(
@@ -46,15 +42,11 @@ def get_frontier(
 ):
     frontier = set()
 
-    for node in range(
-        len(assigned_zones)
-    ):
-
+    for node in range(len(assigned_zones)):
         if assigned_zones[node] != zone_id:
             continue
 
         for neighbor in neighbor_lists[node]:
-
             if assigned_zones[neighbor] == -1:
                 frontier.add(neighbor)
 
@@ -67,16 +59,13 @@ def infer_active_zone(
     neighbor_lists,
 ):
     for neighbor in neighbor_lists[target]:
-
         zone = assigned_zones[neighbor]
 
         if zone >= 0:
             return int(zone)
 
-    raise ValueError(
-        f"Could not infer active zone "
-        f"for expansion target {target}"
-    )
+    raise ValueError(f"Could not infer active zone for expansion target {target}")
+
 
 def train_model(
     model,
@@ -85,12 +74,7 @@ def train_model(
     static_features,
     num_zones,
 ):
-    device = torch.device(
-        DEVICE
-        if DEVICE == "cuda"
-        and torch.cuda.is_available()
-        else "cpu"
-    )
+    device = torch.device(DEVICE if DEVICE == "cuda" and torch.cuda.is_available() else "cpu")
 
     model = model.to(device)
 
@@ -107,7 +91,6 @@ def train_model(
     model.train()
 
     for epoch in range(EPOCHS):
-
         total_loss = 0.0
 
         progress = tqdm(
@@ -116,16 +99,13 @@ def train_model(
         )
 
         for state in progress:
-
             assigned = state.assigned_zones
 
-            dynamic_features = (
-                build_dynamic_features_tensor(
-                    assigned,
-                    graph.neighbor_lists,
-                    num_zones,
-                    device,
-                )
+            dynamic_features = build_dynamic_features_tensor(
+                assigned,
+                graph.neighbor_lists,
+                num_zones,
+                device,
             )
 
             x = torch.cat(
@@ -151,27 +131,20 @@ def train_model(
             # --------------------
 
             if state.root_target is not None:
-
                 target = torch.tensor(
                     state.root_target,
                     dtype=torch.long,
                     device=device,
                 )
 
-                root_logits = (
-                    outputs["root_logits"]
-                )
+                root_logits = outputs["root_logits"]
 
                 root_loss = F.cross_entropy(
                     root_logits.unsqueeze(0),
                     target.unsqueeze(0),
                 )
 
-                loss = (
-                    loss
-                    + ROOT_LOSS_WEIGHT
-                    * root_loss
-                )
+                loss = loss + ROOT_LOSS_WEIGHT * root_loss
 
                 # ----------------
                 # ZONE
@@ -185,36 +158,23 @@ def train_model(
 
                 # At this point we want
                 # the chosen root's zone.
-                root_embedding = outputs[
-                    "embeddings"
-                ][state.root_target]
+                root_embedding = outputs["embeddings"][state.root_target]
 
-                zone_logits = model.zone_head(
-                    root_embedding
-                ).unsqueeze(0)
+                zone_logits = model.zone_head(root_embedding).unsqueeze(0)
 
                 zone_loss = F.cross_entropy(
                     zone_logits,
                     zone_target.unsqueeze(0),
                 )
 
-                loss = (
-                    loss
-                    + ZONE_LOSS_WEIGHT
-                    * zone_loss
-                )
+                loss = loss + ZONE_LOSS_WEIGHT * zone_loss
 
             # --------------------
             # EXPANSION
             # --------------------
 
             if state.expand_target is not None:
-
-                zone_id = int(
-                    state.assigned_zones[
-                        state.expand_target
-                    ]
-                )
+                zone_id = int(state.assigned_zones[state.expand_target])
 
                 # The target is an unassigned node
                 # before the action, so infer the
@@ -233,7 +193,6 @@ def train_model(
                 )
 
                 if candidates:
-
                     candidates_tensor = torch.tensor(
                         candidates,
                         dtype=torch.long,
@@ -246,9 +205,7 @@ def train_model(
                         zone_id,
                     )
 
-                    target_index = candidates.index(
-                        state.expand_target
-                    )
+                    target_index = candidates.index(state.expand_target)
 
                     target = torch.tensor(
                         target_index,
@@ -261,11 +218,7 @@ def train_model(
                         target.unsqueeze(0),
                     )
 
-                    loss = (
-                        loss
-                        + EXPAND_LOSS_WEIGHT
-                        * expand_loss
-                    )
+                    loss = loss + EXPAND_LOSS_WEIGHT * expand_loss
 
             # --------------------
             # BACKPROP
@@ -284,17 +237,10 @@ def train_model(
 
             total_loss += loss.item()
 
-            progress.set_postfix(
-                loss=loss.item()
-            )
+            progress.set_postfix(loss=loss.item())
 
-        average_loss = (
-            total_loss / len(training_states)
-        )
+        average_loss = total_loss / len(training_states)
 
-        print(
-            f"Epoch {epoch + 1}: "
-            f"loss={average_loss:.5f}"
-        )
+        print(f"Epoch {epoch + 1}: loss={average_loss:.5f}")
 
     return model

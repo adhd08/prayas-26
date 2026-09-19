@@ -8,25 +8,18 @@ from .features import (
 
 
 def build_id_mapping(cells):
-    return {
-        cell["id"]: index
-        for index, cell in enumerate(cells)
-    }
+    return {cell["id"]: index for index, cell in enumerate(cells)}
 
 
 def build_neighbor_lists(cells, id_to_index):
     neighbor_lists = []
 
     for cell in cells:
-
         neighbors = []
 
         for neighbor_id in cell["neighbors"]:
-
             if neighbor_id in id_to_index:
-                neighbors.append(
-                    id_to_index[neighbor_id]
-                )
+                neighbors.append(id_to_index[neighbor_id])
 
         neighbor_lists.append(neighbors)
 
@@ -36,13 +29,9 @@ def build_neighbor_lists(cells, id_to_index):
 def build_edge_index(neighbor_lists):
     edges = []
 
-    for source, neighbors in enumerate(
-        neighbor_lists
-    ):
+    for source, neighbors in enumerate(neighbor_lists):
         for target in neighbors:
-            edges.append(
-                [source, target]
-            )
+            edges.append([source, target])
 
     if not edges:
         return torch.empty(
@@ -50,10 +39,14 @@ def build_edge_index(neighbor_lists):
             dtype=torch.long,
         )
 
-    edge_index = torch.tensor(
-        edges,
-        dtype=torch.long,
-    ).t().contiguous()
+    edge_index = (
+        torch.tensor(
+            edges,
+            dtype=torch.long,
+        )
+        .t()
+        .contiguous()
+    )
 
     return edge_index
 
@@ -62,17 +55,12 @@ def build_targets(cells, zone_to_id):
     targets = []
 
     for cell in cells:
-
         zone = cell["type"]
 
         if zone not in zone_to_id:
-            raise ValueError(
-                f"Unknown zone type: {zone}"
-            )
+            raise ValueError(f"Unknown zone type: {zone}")
 
-        targets.append(
-            zone_to_id[zone]
-        )
+        targets.append(zone_to_id[zone])
 
     return torch.tensor(
         targets,
@@ -92,13 +80,9 @@ def build_pyg_graph(
         id_to_index,
     )
 
-    edge_index = build_edge_index(
-        neighbor_lists
-    )
+    edge_index = build_edge_index(neighbor_lists)
 
-    static_features = extract_static_matrix(
-        cells
-    )
+    static_features = extract_static_matrix(cells)
 
     static_features = normalize_matrix(
         static_features,
@@ -121,10 +105,7 @@ def build_pyg_graph(
         y=y,
     )
 
-    data.cell_ids = [
-        cell["id"]
-        for cell in cells
-    ]
+    data.cell_ids = [cell["id"] for cell in cells]
 
     data.neighbor_lists = neighbor_lists
 

@@ -205,7 +205,9 @@ for later use; no layers or planning data are added yet.
 ## What remains deliberately unimplemented
 
 Login/signup screens, saved plans, data imports, heatmap content, facility
-placement, optimisation, real job submission/status persistence, and the worker.
+placement, real job submission/status persistence, and the worker.
+The [Prayas pathway module](PATHWAYS.md) provides local post-zoning computation;
+it is not yet wired to cloud job execution.
 The jobs endpoints authenticate and then return HTTP 501; they do not enqueue
 fake work. The frontend polling helper is ready for the eventual implementation.
 

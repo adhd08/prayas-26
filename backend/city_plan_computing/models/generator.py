@@ -1,12 +1,10 @@
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
-
 from torch_geometric.nn import SAGEConv
 
 
 class CityGenerator(nn.Module):
-
     def __init__(
         self,
         input_dim,
@@ -170,9 +168,7 @@ class CityGenerator(nn.Module):
             dim=-1,
         )
 
-        return self.expand_head(
-            combined
-        ).squeeze(-1)
+        return self.expand_head(combined).squeeze(-1)
 
     def stop_score(
         self,
@@ -186,10 +182,8 @@ class CityGenerator(nn.Module):
             keepdim=True,
         )
 
-        return self.stop_head(
-            pooled
-        ).squeeze()
-    
+        return self.stop_head(pooled).squeeze()
+
     def forward(
         self,
         x,

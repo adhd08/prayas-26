@@ -6,7 +6,8 @@ from pydantic import BaseModel, Field
 
 
 class JobRequest(BaseModel):
-    # Domain-specific validation belongs here once the planning inputs are defined.
+    # Persist this generic envelope unchanged; pathway workers validate its contents
+    # with app.pathways.inputs.PathwayParameters before calling pathway_optimizer.
     parameters: dict[str, Any] = Field(default_factory=dict)
 
 

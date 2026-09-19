@@ -1,6 +1,6 @@
 # Prayas
 
-Geospatial planning scaffold with a standalone Python pathway optimization prototype. No dashboard,
+Geospatial planning scaffold with an integrated Python pathway module. No dashboard,
 login screen, or working job execution is implemented yet.
 
 **Start with [the setup guide](docs/SETUP.md)** for GitHub, Supabase, local development,
@@ -75,7 +75,8 @@ the generated contract for drift.
   → separate Python worker runs optimisation → browser polls `GET /v1/jobs/{id}`.
 - `public.jobs` is reserved for that future pipeline. It permits users to read
   only their own rows; only trusted server code can write. No jobs are queued yet.
-- The optimizer entry point runs fixed-zoning pathway assignment; see [usage and design](docs/PATHWAYS.md). GeoPandas,
+- The pathway entry point, `backend/app/pathway_optimizer.py`, evaluates transport
+  after upstream ML/regression produces zoning; see [the module guide](docs/PATHWAYS.md). GeoPandas,
   Shapely, NetworkX, OSMnx, scikit-learn, and OR-Tools are installed and locked.
 - Redis/QStash are not needed for this scaffold. When implementing execution,
   use a durable Postgres queue with atomic claiming, retry and restart handling;
@@ -86,7 +87,7 @@ the generated contract for drift.
 Live Supabase connectivity, SQL policies, and cloud deployment require your account
 setup. Local health checks do not certify that those services are connected.
 
-## Pathway optimization
+## Prayas pathway module
 
 Run the synthetic demo from `backend/`:
 
@@ -94,5 +95,20 @@ Run the synthetic demo from `backend/`:
 python -m app.pathways examples/pathways/city.json
 ```
 
-See [the pathway guide](docs/PATHWAYS.md) for inputs, costs, hard constraints,
-A*/Dijkstra, congestion assignment, KPIs, tests, and the future ACO/GA extension.
+The module takes fixed zones with population/land use and service metadata, existing
+roads, candidate pathways, and an OD matrix. Candidate selection is explicit.
+It evaluates A*/Dijkstra routing, BPR congestion, cost/environment tradeoffs, and
+population-weighted access to essential services.
+
+See [the pathway guide](docs/PATHWAYS.md) for the zoning-to-worker contract,
+configuration, constraints, tests, and the future ACO/GA network-design boundary.
+
+## City zoning generator
+
+`backend/city_plan_computing` trains the upstream zoning model from the committed
+urban grid dataset. It reads `:GridCell` and `:CONNECTED_TO` records from Neo4j's
+`urban` database, then produces fixed land-use zones for the pathway module.
+It has its own ML dependencies in `requirements.txt`; it remains separate from
+the API runtime. See `urban_city_dataset/data/processed/graph/import.sh` to import
+the data. Set `NEO4J_PASSWORD` and, optionally, `URBAN_CITY_ID` before running
+`python gen_main.py` from the city_plan_computing directory.
