@@ -13,16 +13,15 @@ The four CSVs at the project root link to their canonical copies:
 | `city_sources.csv` | Per-city, per-field/dataset source URL, retrieval timestamp, license and derivation notes |
 | `data_quality.csv` | Retrieval status, observed record counts, missing fields and limitations |
 | `data/boundaries/cities.geojson` | All selected GHSL urban-centre polygons, WGS84 |
-| `data/processed/spatial/` | Boundary-clipped roads, buildings, land-use and OSM geometries; population cell centres, all GeoParquet |
-| `data/processed/poi_level/` | Per-city POI GeoParquet |
+| `data/processed/city_grids/` | One CSV per city, one row per 1 km GHS-POP grid cell: `x`/`y` local grid coordinates, population, dominant land-use `type` (+ `type_source`), `green_cover_pct`, `elevation_m`, `dist_to_boundary_m` |
+| `data/processed/graph/` | Neo4j `neo4j-admin database import` CSVs for City/GridCell nodes and their relationships (`import.sh`, `post_import.cypher`) |
 | `data/processed/city_level/ghsl_all_indicators.csv` | Full GHSL time series and themes for selected cities |
 | `data/processed/city_level/ghsl_indicator_dictionary.csv` | Official indicator descriptions, units and upstream sources extracted from the downloaded GHSL technical report |
 | `data/processed/city_level/feature_dictionary.csv` | Exported field meanings and calculation methods |
 | `data/processed/city_level/eurostat_context.csv` | Separate Urban Audit administrative-city observations; **not merged into GHSL-boundary features** |
 | `data/processed/pilot/` | Preserved three-city milestone outputs and validation report |
-| `logs/` | Run logs, pilot/all validation reports and final audit |
 
-`data/raw/{ghsl,overture,osm,worldpop,eurostat}` holds source material and cache metadata. WorldPop is unused because the matching GHSL population grid is available. Raw Overture extracts keep contributing source metadata and original geometry; processed geometries are clipped.
+Raw downloads and per-city spatial/POI intermediates (`data/raw/`, `data/processed/spatial/`, `data/processed/poi_level/`, `poi_master.csv`, run logs) are **not kept in this repo** — they're multi-gigabyte and fully re-derivable. `data/REBUILD.md` lists every removed path, its upstream source and the script that regenerates it; `data/deleted_files.txt` has the full manifest. WorldPop is unused because the matching GHSL population grid is available. Raw Overture extracts keep contributing source metadata and original geometry; processed geometries are clipped.
 
 ## Run
 
@@ -38,6 +37,8 @@ python3 -m venv ../.venv
 ../.venv/bin/python scripts/eurostat.py
 ../.venv/bin/python scripts/report.py
 ../.venv/bin/python -m pytest tests -q
+../.venv/bin/python scripts/graph_export.py    # Neo4j import CSVs -> data/processed/graph/
+../.venv/bin/python scripts/city_grid_csv.py    # per-city 1km grid CSVs -> data/processed/city_grids/
 ```
 
 The `all` phase requires a passing saved pilot validation. Cached successful city processing is reused. `--recompute` recalculates a phase using cached raw files; it also retries missing raw extracts. `--no-osm` disables new OSM supplementation. Overture queries have a configurable `--timeout` (seconds). Errors become quality rows rather than fabricated zero counts. A failed three-city validation prevents scale-up.
@@ -51,6 +52,7 @@ The selected cities and pinned source releases are in `config.json`. `prepare.py
 3. **[OpenStreetMap / Overpass](https://wiki.openstreetmap.org/wiki/Overpass_API)**. One bbox query per city, serial requests with at least five seconds between requests, compressed cache, bounded timeout and one fallback endpoint. Full feature geometry and tags are retained. Attribution: © OpenStreetMap contributors, ODbL 1.0.
 4. **[GHSL population grid R2023A, 2025, 1 km](https://jeodpp.jrc.ec.europa.eu/ftp/jrc-opendata/GHSL/GHS_POP_GLOBE_R2023A/GHS_POP_E2025_GLOBE_R2023A_54009_1000/V1-0/)**. This matches the population release used by UCDB. The global compressed GeoTIFF is cached once; processing reads city windows. Grid cells selected by their centres inside the original boundary. Grid sums are compared with UCDB totals. These are modelled population estimates, not a new 2025 census.
 5. **[Eurostat Urban Audit](https://ec.europa.eu/eurostat/cache/metadata/en/urb_esms.htm)**. Population, transport, environment, education and living conditions since 2015 for matched European city codes. Response city labels are verified. Administrative-city/greater-city boundaries do not equal GHSL polygons, so observations remain in a separate context table with `boundary_compatible_with_ghsl=False`. Missing observations are not converted into zero. Source URLs, years, indicator labels and status flags are retained.
+6. **[Copernicus DEM GLO-30](https://registry.opendata.aws/copernicus-dem/)**, ESA/Copernicus Programme, distributed as Cloud-Optimized GeoTIFFs on the public `copernicus-dem-30m` AWS bucket. `scripts/graph_export.py` reads each grid cell's elevation with a ranged HTTP request via GDAL's `/vsicurl/` (grouped by 1° tile, one open per tile), so no DEM file is downloaded or stored locally. Free for general use under the [COP-DEM licence](https://dataspace.copernicus.eu/explore-data/data-collections/copernicus-contributing-missions/collections-description/COP-DEM).
 
 All city-level metrics use the **same GHSL urban-centre polygon for that city**, not municipal boundaries or arbitrary circles. Consequently, “Tokyo,” “London,” “New York City,” etc. represent their GHSL urban centres and must not be compared directly with municipal population statistics. Hong Kong's selected urban centre does not cover its entire administrative territory. Population and area are never borrowed from a different boundary. Boundaries are retained in GeoJSON/GeoParquet; their source remains in the original Mollweide GeoPackage.
 
