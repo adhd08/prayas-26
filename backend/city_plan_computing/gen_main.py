@@ -7,6 +7,9 @@ from config import (
     NEO4J_PASSWORD,
     NEO4J_URI,
     NEO4J_USERNAME,
+    # Keep this derived from the shared feature list as grid attributes evolve.
+    # A density-observed flag distinguishes an unavailable building layer from 0% coverage.
+    # The model is trained from scratch, so input width is not persisted between runs.
     ZONE_TO_ID,
     ZONE_TYPES,
 )
@@ -14,6 +17,7 @@ from generation.generator import (
     CityGeneratorEngine,
 )
 from graph.features import (
+    CONTINUOUS_FEATURES,
     extract_static_matrix,
     fit_normalization,
     normalize_matrix,
@@ -110,7 +114,7 @@ def main():
     # -------------------------
 
     # Static features:
-    # 4 continuous features.
+    # Continuous features are defined with the Neo4j-to-model schema in graph.features.
     #
     # Dynamic:
     # assigned              = 1
@@ -119,7 +123,7 @@ def main():
     # neighbor same-zone    = 1
     # neighbor unassigned   = 1
 
-    input_dim = 4 + 1 + len(ZONE_TYPES) + 3
+    input_dim = len(CONTINUOUS_FEATURES) + 1 + len(ZONE_TYPES) + 3
 
     model = CityGenerator(
         input_dim=input_dim,

@@ -12,52 +12,67 @@ Usage:
   python city_grid_csv.py                 # every city
   python city_grid_csv.py ghsl_178 ...    # named cities only
 """
+
 import sys
 import pandas as pd
 
 from common import ROOT, OUT
 from graph_export import CITIES_MASTER, city_cells, load_boundaries
 
-GRID_OUT = OUT / 'city_grids'
+GRID_OUT = OUT / "city_grids"
 
 COLUMNS = [
-    'cell_id', 'x', 'y', 'centroid_lat', 'centroid_lon',
-    'population', 'type', 'type_source',
-    'green_cover_pct', 'elevation_m', 'dist_to_boundary_m',
+    "cell_id",
+    "x",
+    "y",
+    "centroid_lat",
+    "centroid_lon",
+    "population",
+    "type",
+    "type_source",
+    "green_cover_pct",
+    "building_density_pct",
+    "building_density_source",
+    "elevation_m",
+    "dist_to_boundary_m",
 ]
 
 
 def slug(name):
-    return ''.join(c.lower() if c.isalnum() else '_' for c in name).strip('_')
+    return "".join(c.lower() if c.isalnum() else "_" for c in name).strip("_")
 
 
 def export_city(city_id, city_name, boundary):
     cells = city_cells(city_id, boundary)
-    df = pd.DataFrame(cells.drop(columns='geometry'))
-    df['population'] = df['population'].round(1)
-    df = df.sort_values(['y', 'x'])[COLUMNS]
+    df = pd.DataFrame(cells.drop(columns="geometry"))
+    df["population"] = df["population"].round(1)
+    df = df.sort_values(["y", "x"])[COLUMNS]
 
-    path = GRID_OUT / f'{slug(city_name)}_{city_id}.csv'
+    path = GRID_OUT / f"{slug(city_name)}_{city_id}.csv"
     df.to_csv(path, index=False)
-    print(f'{city_name} ({city_id}): {len(df)} cells  '
-          f'grid {df["x"].max() + 1}x{df["y"].max() + 1}  '
-          f'pop {df["population"].sum():,.0f}  -> {path.name}')
+    print(
+        f"{city_name} ({city_id}): {len(df)} cells  "
+        f"grid {df['x'].max() + 1}x{df['y'].max() + 1}  "
+        f"pop {df['population'].sum():,.0f}  -> {path.name}"
+    )
     return df
 
 
 def main(city_ids=None):
     GRID_OUT.mkdir(parents=True, exist_ok=True)
-    cities = pd.read_csv(CITIES_MASTER, usecols=['city_id', 'city_name'])
+    cities = pd.read_csv(CITIES_MASTER, usecols=["city_id", "city_name"])
     boundaries = load_boundaries()
     if city_ids:
-        cities = cities[cities['city_id'].isin(city_ids)]
+        cities = cities[cities["city_id"].isin(city_ids)]
 
     for _, row in cities.iterrows():
-        if row['city_id'] not in boundaries.index:
-            print(f'{row["city_id"]}: no boundary, skipped')
+        if row["city_id"] not in boundaries.index:
+            print(f"{row['city_id']}: no boundary, skipped")
             continue
-        export_city(row['city_id'], row['city_name'], boundaries.loc[row['city_id'], 'geometry'])
+        export_city(
+            row["city_id"], row["city_name"], boundaries.loc[row["city_id"], "geometry"]
+        )
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main(sys.argv[1:] or None)

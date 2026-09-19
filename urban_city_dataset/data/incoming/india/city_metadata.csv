@@ -1,0 +1,6 @@
+city_id,state_or_ut,boundary_definition,elevation_m,population_source,area_elevation_source,retrieved_date
+in_chd,Chandigarh (UT),Union Territory limits,321,Census of India 2011 (via census2011.co.in secondary compilation; primary chandigarhdistrict.nic.in blocks automated fetch),Wikipedia infobox (secondary; area/elevation ultimately from Survey of India / UT Administration),2026-09-19
+in_mum,Maharashtra,Brihanmumbai Municipal Corporation (BMC) limits,14,Census of India 2011 (Mumbai City + Mumbai Suburban districts summed),Wikipedia infobox (secondary),2026-09-19
+in_blr,Karnataka,Bruhat Bengaluru Mahanagara Palike (BBMP) limits,920,Census of India 2011,Wikipedia infobox (secondary),2026-09-19
+in_del,Delhi (UT),National Capital Territory limits (NOT full NCR),225,Census of India 2011,Wikipedia infobox (secondary); elevation given as range 200-250m midpoint used,2026-09-19
+in_ncr,Delhi + Haryana + Uttar Pradesh + Rajasthan districts,NCRPB statutory planning region (multi-state; NOT a single municipal boundary),,Census of India 2011 (compiled by NCRPB / cited via Wikipedia),NCRPB Regional Plan 2021 (secondary citation; elevation not applicable - multi-district region),2026-09-19

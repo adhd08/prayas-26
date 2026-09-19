@@ -1,0 +1,6 @@
+city_id:ID(City),city_name,country,region,income_group,area_km2,population,population_year,latitude,longitude,built_up_area_km2
+in_chd,Chandigarh,India,,,114,1055450,2011,,,
+in_mum,Greater Mumbai,India,,,603.4,12442373,2011,,,
+in_blr,Bengaluru,India,,,741,8443675,2011,,,
+in_del,NCT of Delhi,India,,,1483,16787941,2011,,,
+in_ncr,National Capital Region,India,,,55083,58157286,2011,,,

@@ -34,6 +34,7 @@ class Neo4jLoader:
             c.population AS population,
             c.type AS type,
             c.green_cover_pct AS green_cover,
+            c.building_density_pct AS building_density,
             c.elevation_m AS elevation,
             c.dist_to_boundary_m AS distance_to_boundary,
             collect(DISTINCT n.cell_id) AS neighbors
