@@ -241,6 +241,10 @@ backend/datasets/
 backend/pipeline-data/
 backend/pipeline/datasets/
 
+# Local Claude-owned urban dataset pipeline; keep it out of app commits.
+urban_city_dataset/
+*.DS_Store
+
 # The upstream Python template ignores every directory named lib; keep the
 # frontend's source library code tracked.
 !frontend/src/lib/
