@@ -1,0 +1,322 @@
+@import "tailwindcss";
+
+/* ---------------------------------------------------------------------------
+   Sylvida design tokens.
+
+   Single source of truth for the interface. Canvas and Leaflet layers cannot
+   read Tailwind utilities, so the same values are mirrored in lib/tokens.ts.
+   Change a value here and change it there.
+--------------------------------------------------------------------------- */
+@theme {
+  /* Surfaces. Layered dark so the map reads as the brightest plane. */
+  --color-void: #0b0f14;
+  --color-surface: #111720;
+  --color-surface-2: #151d27;
+  --color-surface-3: #1a2430;
+  --color-line: #263241;
+  --color-line-soft: #1d2732;
+
+  /* Text. */
+  --color-ink: #f5f7fa;
+  --color-ink-2: #a7b0bd;
+  --color-ink-3: #6f7b89;
+  --color-ink-4: #4a5562;
+
+  /* Brand. Used sparingly: active state, primary action, focus ring. */
+  --color-brand: #52d6e8;
+  --color-brand-dim: #2b8494;
+  --color-mint: #55d6a6;
+
+  /* Semantic. */
+  --color-ok: #41d69a;
+  --color-warn: #f4c95d;
+  --color-attention: #ff9f43;
+  --color-danger: #ff5c68;
+  --color-critical: #ff4f5e;
+
+  /* Need ramp, low to critical. */
+  --color-need-0: #31c48d;
+  --color-need-1: #8bcb69;
+  --color-need-2: #e4cf57;
+  --color-need-3: #f89a45;
+  --color-need-4: #f06445;
+  --color-need-5: #e74855;
+
+  /* Infrastructure identity. */
+  --color-healthcare: #ff6b7a;
+  --color-education: #9b8afb;
+  --color-transit: #49c9e8;
+  --color-housing: #f3b84b;
+  --color-greenspace: #57d39a;
+  --color-emergency: #f2775d;
+
+  --font-sans: var(--font-inter), system-ui, -apple-system, BlinkMacSystemFont,
+    "Segoe UI", sans-serif;
+  --font-mono: var(--font-plex-mono), "JetBrains Mono", ui-monospace, monospace;
+
+  --radius-xs: 4px;
+  --radius-sm: 6px;
+  --radius-md: 8px;
+  --radius-lg: 10px;
+  --radius-xl: 12px;
+
+  --shadow-panel: 0 12px 30px rgba(0, 0, 0, 0.25);
+  --shadow-float: 0 18px 44px rgba(0, 0, 0, 0.36);
+
+  --ease-out-soft: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Shell chrome dimensions, read by both CSS and layout components. */
+:root {
+  --nav-h: 64px;
+  --metrics-h: 80px;
+  --panel-left: 312px;
+  --panel-left-collapsed: 56px;
+  --panel-right: 364px;
+  color-scheme: dark;
+}
+
+@media (max-width: 1367px) {
+  :root {
+    --panel-left: 284px;
+    --panel-right: 332px;
+  }
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  background: var(--color-void);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+/* Numbers are read as measurements, so they get the mono face everywhere. */
+.tabular {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.01em;
+}
+
+/* Keyboard focus is always visible; pointer focus is not. */
+:focus-visible {
+  outline: 2px solid var(--color-brand);
+  outline-offset: 2px;
+  border-radius: 3px;
+}
+
+::selection {
+  background: rgba(82, 214, 232, 0.28);
+}
+
+/* Scrollbars inside panels. */
+.scroll-thin {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-line) transparent;
+}
+.scroll-thin::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+.scroll-thin::-webkit-scrollbar-thumb {
+  background: var(--color-line);
+  border-radius: 99px;
+}
+.scroll-thin::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* --- Leaflet overrides ---------------------------------------------------- */
+.leaflet-container {
+  background: #0a0e13;
+  font-family: var(--font-sans);
+  outline: none;
+}
+.leaflet-container .leaflet-control-attribution {
+  background: rgba(11, 15, 20, 0.82);
+  color: var(--color-ink-4);
+  font-size: 10px;
+  padding: 2px 7px;
+  border-top-left-radius: 4px;
+}
+.leaflet-container .leaflet-control-attribution a {
+  color: var(--color-ink-3);
+}
+/* OpenStreetMap ships one light cartography. Inverting and rotating the hue
+   turns it into a dark basemap without an API key; the extra desaturation
+   keeps the need surface owning the colour budget. */
+.leaflet-tile-pane {
+  filter: invert(1) hue-rotate(185deg) brightness(0.93) saturate(0.32)
+    contrast(0.86);
+}
+.leaflet-pane canvas {
+  outline: none;
+}
+.sylvida-cursor-place .leaflet-grab,
+.sylvida-cursor-place .leaflet-container {
+  cursor: crosshair;
+}
+
+
+/* --- Range input ---------------------------------------------------------- */
+/* Track fill is driven by --fill and --accent set inline by the Slider. */
+.sylvida-range {
+  --accent: var(--color-brand);
+  --fill: 50%;
+}
+.sylvida-range::-webkit-slider-runnable-track {
+  height: 3px;
+  border-radius: 99px;
+  background: linear-gradient(
+    to right,
+    var(--accent) 0%,
+    var(--accent) var(--fill),
+    var(--color-line) var(--fill),
+    var(--color-line) 100%
+  );
+}
+.sylvida-range::-moz-range-track {
+  height: 3px;
+  border-radius: 99px;
+  background: var(--color-line);
+}
+.sylvida-range::-moz-range-progress {
+  height: 3px;
+  border-radius: 99px;
+  background: var(--accent);
+}
+.sylvida-range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 12px;
+  height: 12px;
+  margin-top: -4.5px;
+  border-radius: 99px;
+  background: var(--color-ink);
+  border: 2px solid var(--color-surface);
+  box-shadow: 0 0 0 1px var(--accent);
+  transition: transform 150ms var(--ease-out-soft);
+}
+.sylvida-range::-moz-range-thumb {
+  width: 12px;
+  height: 12px;
+  border-radius: 99px;
+  background: var(--color-ink);
+  border: 2px solid var(--color-surface);
+  box-shadow: 0 0 0 1px var(--accent);
+}
+.sylvida-range:hover::-webkit-slider-thumb {
+  transform: scale(1.12);
+}
+
+/* --- Panel scroll fade ---------------------------------------------------- */
+.fade-bottom {
+  mask-image: linear-gradient(to bottom, #000 calc(100% - 20px), transparent);
+}
+
+
+
+/* Leaflet tooltips are restyled rather than replaced so they keep Leaflet's
+   positioning logic. */
+.leaflet-tooltip.sylvida-tip {
+  background: rgba(17, 23, 32, 0.96);
+  border: 1px solid var(--color-line);
+  border-radius: 6px;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
+  color: var(--color-ink);
+  padding: 8px 10px;
+  font-size: 12px;
+  white-space: nowrap;
+}
+.leaflet-tooltip.sylvida-tip::before {
+  display: none;
+}
+
+/* --- Map markers ---------------------------------------------------------- */
+.sylvida-marker {
+  background: transparent;
+  border: 0;
+}
+.sylvida-marker-shell {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  backdrop-filter: blur(2px);
+  transition:
+    box-shadow 150ms var(--ease-out-soft),
+    transform 150ms var(--ease-out-soft);
+}
+.leaflet-marker-icon:hover .sylvida-marker-shell {
+  transform: translateY(-1px);
+}
+.sylvida-ghost {
+  pointer-events: none;
+}
+
+/* A placed facility lands rather than appearing. */
+@keyframes sylvida-drop {
+  0% {
+    transform: scale(0.4);
+    opacity: 0;
+  }
+  60% {
+    transform: scale(1.08);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+.sylvida-drop .sylvida-marker-shell {
+  animation: sylvida-drop 320ms var(--ease-out-soft);
+}
+
+/* --- Motion --------------------------------------------------------------- */
+@keyframes sylvida-sweep {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(200%);
+  }
+}
+.sweep::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(82, 214, 232, 0.14),
+    transparent
+  );
+  animation: sylvida-sweep 1.5s var(--ease-out-soft) infinite;
+}
+
+@keyframes sylvida-ping {
+  0% {
+    transform: scale(0.6);
+    opacity: 0.85;
+  }
+  100% {
+    transform: scale(2.4);
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
