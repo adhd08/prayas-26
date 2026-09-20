@@ -113,6 +113,27 @@ the API runtime. See `urban_city_dataset/data/processed/graph/import.sh` to impo
 the data. Set `NEO4J_PASSWORD` and, optionally, `URBAN_CITY_ID` before running
 `python gen_main.py` from the city_plan_computing directory.
 
+## Data credits
+
+The committed Mumbai and Bengaluru city-grid datasets are derived from the
+following public sources. They support planning prototypes and must be checked
+against local authoritative data before operational use.
+
+- [GHSL](https://human-settlement.emergency.copernicus.eu/) (European Commission
+  Joint Research Centre): 2025 urban-centre boundaries and GHS-POP R2023A 2025
+  population estimates.
+- [Overture Maps](https://docs.overturemaps.org/getting-data/duckdb/): building
+  footprints and land-use features, using the configured `2026-08-19.0` release,
+  for land-use classification and building-density calculations. See Overture's
+  [attribution guidance](https://docs.overturemaps.org/attribution/).
+- [Copernicus DEM GLO-30](https://registry.opendata.aws/copernicus-dem/):
+  elevation values sampled for each grid cell.
+
+The dataset-specific source URLs, retrieval metadata, field derivations, and
+geographic scope are documented in
+[the city dataset guide](urban_city_dataset/README.md) and
+[the India grid data notes](urban_city_dataset/data/processed/city_grids/INDIA_DATA.md).
+
 ## GeoJSON to 3D planning assets
 
 The optional `backend/app/integrations/triposr` package consumes the GeoJSON
