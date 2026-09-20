@@ -9,7 +9,7 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import Any
 
-from shapely.geometry import MultiPolygon, Polygon, shape
+from shapely.geometry import Polygon, shape
 from shapely.ops import triangulate
 
 from app.integrations.triposr.errors import InvalidGeoJSONError, MassingGenerationError
